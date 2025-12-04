@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+
+# Node
+node_modules/
+.next/
+.env.local
+
+# その他
+*.log
+.DS_Store
+backend/backend_env
+DigiCertGlobalRootG2.crt.pem
+
