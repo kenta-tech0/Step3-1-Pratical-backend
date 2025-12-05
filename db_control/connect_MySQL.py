@@ -25,9 +25,11 @@ if SSL_CA_PATH:
     # SSL_CA_PATHが証明書の内容（PEM形式）かファイルパスかを判定
     if SSL_CA_PATH.startswith('-----BEGIN CERTIFICATE-----'):
         # 証明書の内容が直接環境変数に格納されている場合
+        # リテラル文字列 '\n' を実際の改行文字に変換
+        cert_content = SSL_CA_PATH.replace('\\n', '\n')
         # 一時ファイルに書き込む
         with tempfile.NamedTemporaryFile(mode='w', suffix='.pem', delete=False) as cert_file:
-            cert_file.write(SSL_CA_PATH)
+            cert_file.write(cert_content)
             cert_path = cert_file.name
     elif os.path.exists(SSL_CA_PATH):
         # 既存のファイルパスの場合
